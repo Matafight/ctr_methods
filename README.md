@@ -11,8 +11,8 @@
 ctr的主要任务是预测用户点击某个广告的概率，一般是一个二分类问题，通常需要面对海量的样本和特征，所以算法的效率和性能都比较关键。
 
 ## 评估指标是什么？
-以kaggle上的一个比赛为例(https://www.kaggle.com/c/outbrain-click-prediction/overview/evaluation)，该比赛的任务是给定 display_id和ad_id，判断用户点击这个ad_id的概率（display_id应该是与用户相关的），该任务采用的评估指标是 MAP@12(mean average precision)，具体的公式如下所示：
-![](https://img2018.cnblogs.com/blog/667947/201908/667947-20190825213519534-935687563.png)
+以kaggle上的一个比赛为例(https://www.kaggle.com/c/outbrain-click-prediction/overview/evaluation)， 该比赛的任务是给定 display_id和ad_id，判断用户点击这个ad_id的概率（display_id应该是与用户相关的），该任务采用的评估指标是 MAP@12(mean average precision)，具体的公式如下所示：
+![pic1](https://img2018.cnblogs.com/blog/667947/201908/667947-20190825213519534-935687563.png)
 其中|U|是总的display_id的数目，|n|是预测的ad_id的数目，k是cutoff，p(1)表示取每个display_id里得分最高的ad_id看准确率，所以p(k)就表示取每个display_id中概率最高的前k个ad_id作为候选，判断其中有没有用户真实点击的ad_id，并计算准确率。
 
 ## 常用算法比较：
@@ -30,7 +30,7 @@ ctr的主要任务是预测用户点击某个广告的概率，一般是一个�
     2. 简单截断法
         每隔K步(t mod K = 0 )都对梯度进行一次截断，其他步（t mod K !=0）按照一般的梯度下降更新参数（不考虑L1范数）
     3. 截断梯度法(TG)
-         截断梯度法与简单截断法比较像，也是每隔K步进行截断，其他步是常规更新参数，与简单截断法不同的是，TG采用的截断函数不同
+         截断梯度法与简单截断法比较像，也是每隔K步进行截断，其他步是常规更新参数，与简单截断法不同的是，TG采用的截断函数不同 
         ![](https://img2018.cnblogs.com/blog/667947/201908/667947-20190825220709648-386857884.png)
 
     4. FOBOS，RDA和FTRL算法
